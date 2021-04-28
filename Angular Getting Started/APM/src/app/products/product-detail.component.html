@@ -1,0 +1,59 @@
+<div class="card" *ngIf='product'>
+    <div class="card-header">
+        {{pageTitle + ":  " + product.productName }}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">Name:</div>
+                    <div class="col-md-8">{{product.productName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Code:</div>
+                    <div class="col-md-8">{{product.productCode | lowercase | convertToSpaces:'-'}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Avalibility:</div>
+                    <div class="col-md-8">{{product.releaseDate}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Decsription:</div>
+                    <div class="col-md-8">{{product.description}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Price:</div>
+                    <div class="col-md-8">{{product.price | currency:'USD' : 'symbol':'1.2-2'}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">5 Rating Star:</div>
+                    <div class="col-md-8">
+                        <pm-star [rating]='product.starRating' (ratingClicked)='onratingClicked($event)'></pm-star>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf='starMessage'>
+                    <div class="col-md-4">Star Message:</div>
+                    <div class="col-md-8">{{starMessage}}</div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <img class='center-block img-responsive'
+                [src]='product.imageUrl'
+                [title]='product.productName'
+                [style.width.px]='200' 
+                [style.margin.px]='2'
+                > 
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-outline-secondary" 
+        (click)='onBack()'
+        style="width: 80px;">
+        <i class="fa fa-chevron-left"></i>Back
+        </button>
+    </div>
+</div>
